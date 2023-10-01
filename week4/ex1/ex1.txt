@@ -1,3 +1,0 @@
-JavaScript VM: everything is running local, in memory only. You have already prepared set of accounts with 100 ether on each that you can use. Deploying is much faster than using injected Web3.
-
-Injected Web3: you need to use MetaMask or another provider with your own account. Also, you need to confirm the transactions.
