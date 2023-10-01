@@ -1,0 +1,16 @@
+1. Bitcoin uses a proof of work consensus mechanism; Ethereum uses a proof of stake consensus mechanism. 
+
+2. The primary use of Bitcoin is as a currency; Ethereum is more inclined to support decentralized applications.
+
+3. Transactions on the Ethereum network may contain executable code; information attached to transactions on the Bitcoin network is only used in transactions records.
+
+4. Bitcoin uses SHA-256; Ethereum uses LMDGhost.
+
+5. Bitcoin: the more transaction fees a person pays, the quicker the transactions get validated and added in a block; Ethereum uses an A-gas system in place of transaction fees: fees are based on estimation of the volume of computational effort needed to perform specific operations.
+
+
+
+Improvements:
+- No gas for primitive programs
+- Add length checks for dynamic types
+- Add type checks at the execution level

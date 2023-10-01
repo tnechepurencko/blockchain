@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Web 3 Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src='node_modules/web3/dist/web3.min.js'></script>
+</head>
+
+<body>
+    <br >
+    <button onclick="plus();">Plus</button>
+    <button onclick="minus();">Minus</button>
+    <button onclick="mult();">Multiplication</button>
+    <button onclick="divis();">Division</button>
+    <br /><br />
+    Status: <span id="status">Loading...</span>
+
+    <script type="text/javascript">
+        // import Web3 from 'web3';
+        async function loadWeb3() {
+            if (window.ethereum) {
+                window.web3 = new Web3(window.ethereum);
+                window.ethereum.enable();
+            }
+        }
+
+        async function plus() {
+            const res = await window.contract.methods.plus().call();
+            updateStatus(`result: ${res}`)
+        }
+
+        async function minus() {
+            const res = await window.contract.methods.minus().call();
+            updateStatus(`result: ${res}`)
+        }
+
+        async function mult() {
+            const res = await window.contract.methods.mult().call();
+            updateStatus(`result: ${res}`)
+        }
+
+        async function divis() {
+            const res = await window.contract.methods.div().call();
+            updateStatus(`result: ${res}`)
+        }
+
+        async function load() {
+            await loadWeb3();
+            window.contract = await loadContract();
+            updateStatus('Ready!');
+        }
+
+        function updateStatus(status) {
+            const statusEl = document.getElementById('status');
+            statusEl.innerHTML = status;
+            console.log(status);
+        }
+
+        async function loadContract() {
+            return await new window.web3.eth.Contract([
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "_X",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "_Y",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "setValues",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "inputs": [],
+                    "name": "div",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "minus",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "mult",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "plus",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            ], '0xd9145CCE52D386f254917e481eB44e9943F39138');
+        }
+
+        load();
+
+    </script>
+</body>
+
+</html>
